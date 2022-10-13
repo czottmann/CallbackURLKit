@@ -29,12 +29,13 @@ import Foundation
 
 // Client application
 open class Client {
-
     open var urlScheme: String
+    open var host: String
     open var manager: Manager?
 
-    public init(urlScheme: String) {
+    public init(urlScheme: String, host: String?) {
         self.urlScheme = urlScheme
+        self.host = host ?? kXCUHost
     }
 
     open var appInstalled: Bool {

@@ -39,7 +39,7 @@ struct Request {
     func URLComponents(_ query: Parameters) -> Foundation.URLComponents {
         var components = Foundation.URLComponents()
         components.scheme = self.client.urlScheme
-        components.host = kXCUHost
+        components.host = self.client.host
         components.path = "/\(self.action)"
         components.queryDictionary = (parameters + query)
         return components

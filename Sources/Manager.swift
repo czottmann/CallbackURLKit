@@ -164,16 +164,38 @@ open class Manager {
     /// - Parameter onCancel: callback for cancel.
     ///
     /// Throws: CallbackURLKitError
-    open func perform(action: Action, urlScheme: String, parameters: Parameters = [:],
-        onSuccess: SuccessCallback? = nil, onFailure: FailureCallback? = nil, onCancel: CancelCallback? = nil) throws {
-            let client = Client(urlScheme: urlScheme)
+    open func perform(action: Action,
+                      urlScheme: String,
+                      host: String? = nil,
+                      parameters: Parameters = [:],
+                      onSuccess: SuccessCallback? = nil,
+                      onFailure: FailureCallback? = nil,
+                      onCancel: CancelCallback? = nil) throws
+    {
+        let client = Client(urlScheme: urlScheme, host: host)
             client.manager = self
-        try client.perform(action: action, parameters: parameters, onSuccess: onSuccess, onFailure: onFailure, onCancel: onCancel)
+        try client.perform(action: action,
+                           parameters: parameters,
+                           onSuccess: onSuccess,
+                           onFailure: onFailure,
+                           onCancel: onCancel)
     }
 
-    public static func perform(action: Action, urlScheme: String, parameters: Parameters = [:],
-        onSuccess: SuccessCallback? = nil, onFailure: FailureCallback? = nil, onCancel: CancelCallback? = nil) throws {
-        try Manager.shared.perform(action: action, urlScheme: urlScheme, parameters: parameters, onSuccess: onSuccess, onFailure: onFailure, onCancel: onCancel)
+    public static func perform(action: Action,
+                               urlScheme: String,
+                               host: String? = nil,
+                               parameters: Parameters = [:],
+                               onSuccess: SuccessCallback? = nil,
+                               onFailure: FailureCallback? = nil,
+                               onCancel: CancelCallback? = nil) throws
+    {
+        try Manager.shared.perform(action: action,
+                                   urlScheme: urlScheme,
+                                   host: host,
+                                   parameters: parameters,
+                                   onSuccess: onSuccess,
+                                   onFailure: onFailure,
+                                   onCancel: onCancel)
     }
 
     /// Utility function to get URL schemes from Info.plist
